@@ -14,4 +14,4 @@ E.g. `npx node-cds-gen contoso.onmicrosoft.com contosoorg.crm.dynamics.com`
 
 1. Run `npm run-script test` 
 
-
+For more information see the [cdsify project](https://github.com/scottdurow/cdsify/wiki)
