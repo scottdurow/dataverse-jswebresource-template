@@ -1,9 +1,9 @@
-import { setMetadataCache, XrmContextCdsServiceClient, Entity, ActivityParty } from "cdsify";
+import { setMetadataCache, XrmContextCdsServiceClient, Entity, ActivityParty, CdsServiceClient } from "cdsify";
 import { Account, accountMetadata } from "../cds-generated/entities/Account";
 import { metadataCache } from "../cds-generated/metadata";
 import { opportunityMetadata, Opportunity } from "../cds-generated/entities/Opportunity";
 import { opportunitycloseMetadata } from "../cds-generated/entities/OpportunityClose";
-import { WinOpportunityRequest } from "../cds-generated/actions/WinOpportunity";
+import { WinOpportunityRequest, WinOpportunityMetadata } from "../cds-generated/actions/WinOpportunity";
 import { RetrieveMetadataChangesRequest } from "../cds-generated/functions/RetrieveMetadataChanges";
 import { LogicalOperator } from "../cds-generated/enums/LogicalOperator";
 import { MetadataConditionOperator } from "../cds-generated/enums/MetadataConditionOperator";
@@ -14,7 +14,7 @@ import {
 } from "../cds-generated/functions/CalculateRollupField";
 import { Letter } from "../cds-generated/entities/Letter";
 
-async function getMetadata(cdsServiceClient: XrmContextCdsServiceClient): Promise<void> {
+async function getMetadata(cdsServiceClient: CdsServiceClient): Promise<void> {
   const metadataQuery = {
     logicalName: "RetrieveMetadataChanges",
     Query: {
@@ -60,7 +60,7 @@ async function getMetadata(cdsServiceClient: XrmContextCdsServiceClient): Promis
   console.log(entityResponse.EntityMetadata && entityResponse.EntityMetadata[0].LogicalName);
 }
 
-async function calculateRollup(cdsServiceClient: XrmContextCdsServiceClient): Promise<void> {
+async function calculateRollup(cdsServiceClient: CdsServiceClient): Promise<void> {
   debugger;
   const account1 = {
     logicalName: accountMetadata.logicalName,
@@ -90,26 +90,27 @@ async function calculateRollup(cdsServiceClient: XrmContextCdsServiceClient): Pr
   }
 }
 
-async function winOpportunity(cdsServiceClient: XrmContextCdsServiceClient): Promise<void> {
+export async function winOpportunity(cdsServiceClient: CdsServiceClient): Promise<void> {
   debugger;
-  const account1 = {
-    logicalName: accountMetadata.logicalName,
-    name: "Account 1",
-  } as Account;
+  // Create opportunity
   const opportunity1 = {
     logicalName: opportunityMetadata.logicalName,
     name: "Opportunity 1",
   } as Opportunity;
+  // Create account
+  const account1 = {
+    logicalName: accountMetadata.logicalName,
+    name: "Account 1",
+  } as Account;
   try {
-    // Create account
     account1.id = await cdsServiceClient.create(account1);
-    // Assign parent customer
+
     opportunity1.customerid = Entity.toEntityReference(account1);
-    // Create opportunity
     opportunity1.id = await cdsServiceClient.create(opportunity1);
+
     // WinOpportunity
     const winRequest = {
-      logicalName: "WinOpportunity",
+      logicalName: WinOpportunityMetadata.operationName,
       Status: 3,
       OpportunityClose: {
         logicalName: opportunitycloseMetadata.logicalName,
@@ -119,6 +120,13 @@ async function winOpportunity(cdsServiceClient: XrmContextCdsServiceClient): Pro
       },
     } as WinOpportunityRequest;
     const winResponse = await cdsServiceClient.execute(winRequest);
+
+    const opportunityRetreived = (await cdsServiceClient.retrieve(opportunity1.logicalName, opportunity1.id, [
+      "customerid",
+    ])) as Opportunity;
+
+    console.log(opportunityRetreived.customerid?.id);
+
     console.log(winResponse);
   } catch (ex) {
     console.error(ex);
@@ -134,7 +142,7 @@ async function winOpportunity(cdsServiceClient: XrmContextCdsServiceClient): Pro
   }
 }
 
-async function createActivity(cdsServiceClient: XrmContextCdsServiceClient): Promise<void> {
+async function createActivity(cdsServiceClient: CdsServiceClient): Promise<void> {
   const account1 = {
     logicalName: "account",
     name: "Account 1",

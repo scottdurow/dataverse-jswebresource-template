@@ -27,7 +27,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "tsc & jest",
+    "test": "tsc & jest unit.",
+    "integration-test": "tsc & jest integration.",
     "webpack": "webpack"
   },
   "author": "",
