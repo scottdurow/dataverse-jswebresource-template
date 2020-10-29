@@ -4,32 +4,34 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "cdsify": "^1.0.0",
-    "moment": "^2.24.0",
+    "cdsify": "^1.0.5",
+    "moment": "^2.29.1",
     "ts-loader": "^6.2.2",
-    "typescript": "^3.8.3",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^4.44.2"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "@types/xrm": "^9.0.23",
-    "@typescript-eslint/eslint-plugin": "^2.28.0",
-    "@typescript-eslint/parser": "^2.28.0",
+    "@types/jest": "^25.2.3",
+    "@types/xrm": "^9.0.31",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.19.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
     "jest": "^24.9.0",
     "jest-environment-jsdom-fourteen": "^0.1.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.3.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.2.0"
   },
   "scripts": {
     "test": "tsc & jest unit.",
     "integration-test": "tsc & jest integration.",
-    "webpack": "webpack"
+    "build": "webpack --config webpack.dev.js",
+    "watch": "webpack --config webpack.dev.js --watch",
+    "dist": "webpack --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC"

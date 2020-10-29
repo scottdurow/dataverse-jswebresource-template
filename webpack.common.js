@@ -1,10 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
 module.exports = {
   entry: "./src/index.ts",
-  watch: true,
-  //mode:"development",
-  mode: "production",
   module: {
     rules: [
       {
@@ -19,8 +17,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    library: "WebresourceTemplate",
+    filename: "ClientHooks.js",
+    // Set this to your namespace e.g. cds.ClientHooks
+    library: ["cds", "ClientHooks"],
     libraryTarget: "var",
   },
 };

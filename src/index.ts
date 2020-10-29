@@ -1,2 +1,3 @@
-export * as ContactForm from "./Forms/ContactForm";
-export * as AccountForm from "./Forms/AccountForm";
+export * from "./Forms/ContactForm";
+export * from "./Forms/AccountForm";
+export * from "./Ribbon/ContactRibbon";
