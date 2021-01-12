@@ -1,18 +1,18 @@
-import { setMetadataCache, XrmContextCdsServiceClient, Entity, ActivityParty, CdsServiceClient } from "cdsify";
-import { Account, accountMetadata } from "../cds-generated/entities/Account";
-import { metadataCache } from "../cds-generated/metadata";
-import { opportunityMetadata, Opportunity } from "../cds-generated/entities/Opportunity";
-import { opportunitycloseMetadata } from "../cds-generated/entities/OpportunityClose";
-import { WinOpportunityRequest, WinOpportunityMetadata } from "../cds-generated/actions/WinOpportunity";
-import { RetrieveMetadataChangesRequest } from "../cds-generated/functions/RetrieveMetadataChanges";
-import { LogicalOperator } from "../cds-generated/enums/LogicalOperator";
-import { MetadataConditionOperator } from "../cds-generated/enums/MetadataConditionOperator";
-import { RetrieveMetadataChangesResponse } from "../cds-generated/complextypes/RetrieveMetadataChangesResponse";
+import { setMetadataCache, XrmContextCdsServiceClient, Entity, ActivityParty, CdsServiceClient } from "dataverse-ify";
+import { Account, accountMetadata } from "../dataverse-gen/entities/Account";
+import { metadataCache } from "../dataverse-gen/metadata";
+import { opportunityMetadata, Opportunity } from "../dataverse-gen/entities/Opportunity";
+import { opportunitycloseMetadata } from "../dataverse-gen/entities/OpportunityClose";
+import { WinOpportunityRequest, WinOpportunityMetadata } from "../dataverse-gen/actions/WinOpportunity";
+import { RetrieveMetadataChangesRequest } from "../dataverse-gen/functions/RetrieveMetadataChanges";
+import { LogicalOperator } from "../dataverse-gen/enums/LogicalOperator";
+import { MetadataConditionOperator } from "../dataverse-gen/enums/MetadataConditionOperator";
+import { RetrieveMetadataChangesResponse } from "../dataverse-gen/complextypes/RetrieveMetadataChangesResponse";
 import {
   CalculateRollupFieldMetadata,
   CalculateRollupFieldRequest,
-} from "../cds-generated/functions/CalculateRollupField";
-import { Letter } from "../cds-generated/entities/Letter";
+} from "../dataverse-gen/functions/CalculateRollupField";
+import { Letter } from "../dataverse-gen/entities/Letter";
 
 export class ContactForm {
   static async getMetadata(cdsServiceClient: CdsServiceClient): Promise<void> {
