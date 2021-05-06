@@ -1,30 +1,30 @@
 {
   "name": "webresourcetemplate",
+  
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "cdsify": "^1.0.5",
-    "moment": "^2.29.1",
-    "ts-loader": "^6.2.2",
-    "webpack": "^4.44.2"
+    "dataverse-ify": "^1.0.8",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
-    "@types/xrm": "^9.0.31",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "jest": "^24.9.0",
-    "jest-environment-jsdom-fourteen": "^0.1.0",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.3.0",
-    "typescript": "^3.9.7",
-    "webpack-cli": "^3.3.12",
-    "webpack-merge": "^5.2.0"
+    "@types/jest": "^26.0.23",
+    "@types/xrm": "^9.0.39",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "jest": "^26.6.3",
+    "prettier": "2.2.1",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^9.1.2",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-merge": "^5.7.3",
+    "syswide-cas": "^5.3.0"
   },
   "scripts": {
     "test": "tsc & jest unit.",

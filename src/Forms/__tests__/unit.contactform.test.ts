@@ -1,7 +1,7 @@
 import { ContactForm } from "../..";
 import { MockCdsServiceClient } from "../../Mocks/MockCdsServiceClient";
-import { Opportunity } from "../../cds-generated/entities/Opportunity";
-import { EntityReference } from "cdsify";
+import { Opportunity } from "../../dataverse-gen/entities/Opportunity";
+import { EntityReference } from "dataverse-ify";
 
 test("ContactForm onload", async () => {
   const cdsServiceClient = new MockCdsServiceClient();

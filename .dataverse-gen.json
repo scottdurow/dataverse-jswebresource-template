@@ -1,0 +1,20 @@
+{
+  "entities": [
+    "account",
+    "contact",
+    "activityparty",
+    "opportunity",
+    "letter"
+  ],
+  "actions": [
+    "WinOpportunity"
+  ],
+  "functions": [
+    "CalculateRollupField",
+    "CalculateTotalTimeIncident",
+    "RetrieveMetadataChanges"
+  ],
+  "output": {
+    "outputRoot": "./src/dataverse-gen"
+  }
+}

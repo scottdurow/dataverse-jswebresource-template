@@ -1,6 +1,6 @@
-import { ActivityParty, EntityReference, setMetadataCache, XrmContextCdsServiceClient } from "cdsify";
-import { Letter, letterMetadata } from "../cds-generated/entities/Letter";
-import { metadataCache } from "../cds-generated/metadata";
+import { ActivityParty, EntityReference, setMetadataCache, XrmContextCdsServiceClient } from "dataverse-ify";
+import { Letter, letterMetadata } from "../dataverse-gen/entities/Letter";
+import { metadataCache } from "../dataverse-gen/metadata";
 
 export class ContactRibbon {
   static async SendEmail(context: Xrm.FormContext): Promise<void> {

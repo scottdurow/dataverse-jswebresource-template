@@ -1,4 +1,4 @@
-import { SetupGlobalContext } from "cdsify/lib/cdsnode/SetupGlobalContext";
+import { SetupGlobalContext } from "dataverse-ify/lib/webapi";
 import { ContactForm } from "../..";
 describe("Account Form Integration Test", () => {
   beforeAll(async () => {
