@@ -27,8 +27,8 @@
     "syswide-cas": "^5.3.0"
   },
   "scripts": {
-    "test": "tsc & jest unit.",
-    "integration-test": "tsc & jest integration.",
+    "test": "jest unit.",
+    "integration-test": "jest integration.",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch",
     "dist": "webpack --config webpack.prod.js"
