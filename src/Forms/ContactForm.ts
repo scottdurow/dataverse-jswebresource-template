@@ -12,7 +12,7 @@ import {
   CalculateRollupFieldMetadata,
   CalculateRollupFieldRequest,
 } from "../dataverse-gen/functions/CalculateRollupField";
-import { Letter } from "../dataverse-gen/entities/Letter";
+import { Letter, LetterAttributes } from "../dataverse-gen/entities/Letter";
 
 export class ContactForm {
   static async getMetadata(cdsServiceClient: CdsServiceClient): Promise<void> {
@@ -169,7 +169,10 @@ export class ContactForm {
 
       // Retrieve again to check bcc
       if (letter1.id) {
-        const letterRetrieved = (await cdsServiceClient.retrieve("letter", letter1.id, ["subject", "to"])) as Letter;
+        const letterRetrieved = (await cdsServiceClient.retrieve("letter", letter1.id, [
+          LetterAttributes.Subject,
+          LetterAttributes.to,
+        ])) as Letter;
         console.log(letterRetrieved.bcc && letterRetrieved.bcc[0].partyid);
         console.log(letterRetrieved.to && letterRetrieved.to[0].partyid);
       }
