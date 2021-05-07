@@ -92,7 +92,6 @@ export class ContactForm {
   }
 
   static async winOpportunity(cdsServiceClient: CdsServiceClient): Promise<void> {
-    debugger;
     // Create opportunity
     const opportunity1 = {
       logicalName: opportunityMetadata.logicalName,
