@@ -1,14 +1,13 @@
 {
 	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
+		"target": "es5",
+		"module": "es2015",
 		"moduleResolution": "node",
 		"lib": [
 			"es2015",
 			"dom"
 		],
 		"rootDir": "src",
-		"outDir": "lib",
 		"strict": true,
 		"alwaysStrict": true,
 		"strictFunctionTypes": true,
@@ -21,10 +20,10 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
+		"emitDecoratorMetadata": false,
+		"experimentalDecorators": false,
 		"downlevelIteration": true,
-		"declaration": true,
+		"declaration": false,
 		"sourceMap": true,
 		"pretty": true
 	}
