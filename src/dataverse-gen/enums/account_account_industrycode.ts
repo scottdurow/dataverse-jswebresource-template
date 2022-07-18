@@ -34,8 +34,5 @@ export const enum account_account_industrycode {
   UtilityCreationandDistribution = 31,
   VehicleRetail = 32,
   Wholesale = 33,
-  Industry1 = 100000000,
-  Industry2 = 100000001,
-  Industry5 = 100000002,
 }
   
