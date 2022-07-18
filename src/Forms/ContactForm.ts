@@ -1,4 +1,4 @@
-import { setMetadataCache, XrmContextCdsServiceClient, Entity, ActivityParty, CdsServiceClient } from "dataverse-ify";
+import { setMetadataCache, Entity, ActivityParty, DataverseClient, XrmContextDataverseClient } from "dataverse-ify";
 import { Account, accountMetadata } from "../dataverse-gen/entities/Account";
 import { metadataCache } from "../dataverse-gen/metadata";
 import { opportunityMetadata, Opportunity } from "../dataverse-gen/entities/Opportunity";
@@ -15,7 +15,7 @@ import {
 import { Letter, LetterAttributes } from "../dataverse-gen/entities/Letter";
 
 export class ContactForm {
-  static async getMetadata(cdsServiceClient: CdsServiceClient): Promise<void> {
+  static async getMetadata(cdsServiceClient: DataverseClient): Promise<void> {
     const metadataQuery = {
       logicalName: "RetrieveMetadataChanges",
       Query: {
@@ -61,7 +61,7 @@ export class ContactForm {
     console.log(entityResponse.EntityMetadata && entityResponse.EntityMetadata[0].LogicalName);
   }
 
-  static async calculateRollup(cdsServiceClient: CdsServiceClient): Promise<void> {
+  static async calculateRollup(cdsServiceClient: DataverseClient): Promise<void> {
     debugger;
     const account1 = {
       logicalName: accountMetadata.logicalName,
@@ -91,7 +91,7 @@ export class ContactForm {
     }
   }
 
-  static async winOpportunity(cdsServiceClient: CdsServiceClient): Promise<void> {
+  static async winOpportunity(cdsServiceClient: DataverseClient): Promise<void> {
     // Create opportunity
     const opportunity1 = {
       logicalName: opportunityMetadata.logicalName,
@@ -142,7 +142,7 @@ export class ContactForm {
     }
   }
 
-  static async createActivity(cdsServiceClient: CdsServiceClient): Promise<void> {
+  static async createActivity(cdsServiceClient: DataverseClient): Promise<void> {
     const account1 = {
       logicalName: "account",
       name: "Account 1",
@@ -193,10 +193,15 @@ export class ContactForm {
     console.log("ContactForm onload");
     setMetadataCache(metadataCache);
 
-    const cdsServiceClient = new XrmContextCdsServiceClient(Xrm.WebApi);
+    const cdsServiceClient = new XrmContextDataverseClient(Xrm.WebApi);
     await ContactForm.calculateRollup(cdsServiceClient);
     await ContactForm.winOpportunity(cdsServiceClient);
     await ContactForm.getMetadata(cdsServiceClient);
     await ContactForm.createActivity(cdsServiceClient);
   }
+}
+
+export function foo123(): void {
+  // test tree shaking
+  //bar;
 }

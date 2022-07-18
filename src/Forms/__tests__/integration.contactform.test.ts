@@ -1,4 +1,4 @@
-import { SetupGlobalContext } from "dataverse-ify/lib/webapi";
+import { SetupGlobalContext } from "dataverse-ify/lib/webapi/node";
 import { ContactForm } from "../..";
 describe("Account Form Integration Test", () => {
   beforeAll(async () => {

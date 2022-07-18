@@ -1,6 +1,6 @@
 {
   "name": "webresourcetemplate",
-  
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -23,15 +23,16 @@
     "ts-loader": "^9.1.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0",
-    "webpack-merge": "^5.7.3",
-    "syswide-cas": "^5.3.0"
+    "webpack-merge": "^5.7.3"
   },
   "scripts": {
     "test": "jest unit.",
     "integration-test": "jest integration.",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch",
-    "dist": "webpack --config webpack.prod.js"
+    "dist": "webpack --config webpack.prod.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "",
   "license": "ISC"

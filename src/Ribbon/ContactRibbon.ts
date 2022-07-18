@@ -1,4 +1,4 @@
-import { ActivityParty, EntityReference, setMetadataCache, XrmContextCdsServiceClient } from "dataverse-ify";
+import { ActivityParty, EntityReference, setMetadataCache, XrmContextDataverseClient } from "dataverse-ify";
 import { Letter, letterMetadata } from "../dataverse-gen/entities/Letter";
 import { metadataCache } from "../dataverse-gen/metadata";
 
@@ -8,7 +8,7 @@ export class ContactRibbon {
       text: "Are you sure?",
     });
     setMetadataCache(metadataCache);
-    const cdsServiceClient = new XrmContextCdsServiceClient(Xrm.WebApi);
+    const cdsServiceClient = new XrmContextDataverseClient(Xrm.WebApi);
 
     const letter1 = {
       logicalName: letterMetadata.logicalName,
@@ -50,7 +50,7 @@ export class ContactRibbon {
       } as Xrm.Navigation.NavigationOptions;
       Xrm.Navigation.navigateTo(pageInput, navigationOptions);
     } catch (ex) {
-      context.ui.setFormNotification(ex, "INFO", "send-email");
+      context.ui.setFormNotification(ex as string, "INFO", "send-email");
     } finally {
     }
   }
