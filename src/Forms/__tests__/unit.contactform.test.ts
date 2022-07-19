@@ -1,10 +1,10 @@
 import { ContactForm } from "../..";
-import { MockCdsServiceClient } from "../../Mocks/MockCdsServiceClient";
+import { MockDataverseClient } from "../../Mocks/MockCdsServiceClient";
 import { Opportunity } from "../../dataverse-gen/entities/Opportunity";
 import { EntityReference } from "dataverse-ify";
 
 test("ContactForm onload", async () => {
-  const cdsServiceClient = new MockCdsServiceClient();
+  const cdsServiceClient = new MockDataverseClient();
 
   // Create account
   cdsServiceClient.create = jest.fn().mockImplementationOnce(async () => {

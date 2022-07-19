@@ -5,7 +5,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "dataverse-ify": "^1.0.8",
+    "dataverse-ify": "^2.0.2",
     "moment": "^2.29.1"
   },
   "devDependencies": {

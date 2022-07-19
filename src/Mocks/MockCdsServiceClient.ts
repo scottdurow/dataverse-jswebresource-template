@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { CdsServiceClient, IEntity, Guid } from "dataverse-ify";
+import { DataverseClient, IEntity, Guid } from "dataverse-ify";
 
-export class MockCdsServiceClient implements CdsServiceClient {
+export class MockDataverseClient implements DataverseClient {
   create(_entity: import("dataverse-ify").IEntity): Promise<string> {
     throw new Error("Method not implemented.");
   }
