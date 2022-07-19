@@ -1,5 +1,5 @@
 import { ContactForm } from "../..";
-import { MockDataverseClient } from "../../Mocks/MockCdsServiceClient";
+import { MockDataverseClient } from "../../Mocks/MockDataverseClient";
 import { Opportunity } from "../../dataverse-gen/entities/Opportunity";
 import { EntityReference } from "dataverse-ify";
 
