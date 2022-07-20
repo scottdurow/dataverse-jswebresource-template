@@ -5,7 +5,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "dataverse-ify": "^2.0.2",
+    "dataverse-ify": "^2.0.3",
     "moment": "^2.29.1"
   },
   "devDependencies": {
@@ -26,8 +26,8 @@
     "webpack-merge": "^5.7.3"
   },
   "scripts": {
-    "test": "jest unit.",
-    "integration-test": "jest integration.",
+    "test": "jest \/unit.",
+    "integration-test": "jest \/integration.",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch",
     "dist": "webpack --config webpack.prod.js",

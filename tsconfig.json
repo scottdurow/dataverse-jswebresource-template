@@ -25,6 +25,7 @@
 		"downlevelIteration": true,
 		"declaration": false,
 		"sourceMap": true,
-		"pretty": true
+		"pretty": true,
+		"esModuleInterop": true
 	}
 }
