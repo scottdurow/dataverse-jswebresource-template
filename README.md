@@ -8,7 +8,7 @@ Demonstrates:
 
 Instructions:
 1. Use `npx dataverse-auth [environment]` to authenticate\
-E.g. `npx dataverse-auth contosoorg.crm.dynamics.com`
+E.g. `npx dataverse-auth org.crm.dynamics.com`
 
 1. Update the [config\test.yaml](https://github.com/scottdurow/dataverse-jswebresource-template/blob/master/config/test.yaml#L10) host entry with your Microsoft Dataverse environment
 

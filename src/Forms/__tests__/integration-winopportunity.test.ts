@@ -1,19 +1,25 @@
 /* eslint-disable camelcase */
 import { Entity, setMetadataCache, XrmContextDataverseClient } from "dataverse-ify";
-import { SetupGlobalContext } from "dataverse-ify/lib/webapi/node";
-import { WinOpportunityMetadata, WinOpportunityRequest } from "../../dataverse-gen/actions/WinOpportunity";
-import { Account, accountMetadata } from "../../dataverse-gen/entities/Account";
-import { Opportunity, OpportunityAttributes, opportunityMetadata } from "../../dataverse-gen/entities/Opportunity";
-import { opportunitycloseMetadata } from "../../dataverse-gen/entities/OpportunityClose";
-import { opportunity_opportunity_statecode } from "../../dataverse-gen/enums/opportunity_opportunity_statecode";
+import { SetupGlobalContextIfUndefined } from "dataverse-ify/lib/webapi/node";
+import {
+  Account,
+  accountMetadata,
+  Opportunity,
+  OpportunityAttributes,
+  opportunitycloseMetadata,
+  opportunityMetadata,
+  opportunity_opportunity_statecode,
+  WinOpportunityMetadata,
+  WinOpportunityRequest,
+} from "../../dataverse-gen";
 
+/*
+Demonstrates how to integration test form logic with a connection to dataverse
+provided by the dataverse-ify implementation of Xrm.WebApi
+*/
 describe("winOpportunity", () => {
   beforeAll(async () => {
-    // Is this running inside NodeJS?
-    if (typeof Xrm === "undefined") {
-      // Set up the Node Xrm global context
-      await SetupGlobalContext();
-    }
+    await SetupGlobalContextIfUndefined();
   }, 30000);
   test("WinOpportunity", async () => {
     setMetadataCache({
@@ -54,13 +60,11 @@ describe("winOpportunity", () => {
           logicalName: opportunitycloseMetadata.logicalName,
           description: "Sample Opportunity Close",
           subject: "Sample",
-
           opportunityid: Entity.toEntityReference(opportunity1),
         },
       } as WinOpportunityRequest;
 
-      const winResponse = await serviceClient.execute(winRequest);
-      expect(winResponse).toBeUndefined();
+      await serviceClient.execute(winRequest);
 
       // Get the opportunity to check it is won
       // Retrieve Updated

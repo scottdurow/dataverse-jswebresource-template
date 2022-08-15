@@ -1,8 +1,11 @@
 import { ContactForm } from "../..";
 import { MockDataverseClient } from "../../Mocks/MockDataverseClient";
-import { Opportunity } from "../../dataverse-gen/entities/Opportunity";
 import { EntityReference } from "dataverse-ify";
+import { Opportunity } from "../../dataverse-gen";
 
+/*
+Demonstrates how to mock the DataverseServiceClient to unit test form logic
+*/
 test("ContactForm onload", async () => {
   const cdsServiceClient = new MockDataverseClient();
 

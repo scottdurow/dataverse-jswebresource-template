@@ -1,5 +1,5 @@
 import { ActivityParty, EntityReference, setMetadataCache, XrmContextDataverseClient } from "dataverse-ify";
-import { Letter, letterMetadata } from "../dataverse-gen/entities/Letter";
+import { Letter, letterMetadata } from "../dataverse-gen";
 import { metadataCache } from "../dataverse-gen/metadata";
 
 export class ContactRibbon {

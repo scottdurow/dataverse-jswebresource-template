@@ -1,21 +1,25 @@
 import { setMetadataCache, Entity, ActivityParty, DataverseClient, XrmContextDataverseClient } from "dataverse-ify";
-import { Account, accountMetadata } from "../dataverse-gen/entities/Account";
-import { metadataCache } from "../dataverse-gen/metadata";
-import { opportunityMetadata, Opportunity } from "../dataverse-gen/entities/Opportunity";
-import { opportunitycloseMetadata } from "../dataverse-gen/entities/OpportunityClose";
-import { WinOpportunityRequest, WinOpportunityMetadata } from "../dataverse-gen/actions/WinOpportunity";
-import { RetrieveMetadataChangesRequest } from "../dataverse-gen/functions/RetrieveMetadataChanges";
-import { LogicalOperator } from "../dataverse-gen/enums/LogicalOperator";
-import { MetadataConditionOperator } from "../dataverse-gen/enums/MetadataConditionOperator";
-import { RetrieveMetadataChangesResponse } from "../dataverse-gen/complextypes/RetrieveMetadataChangesResponse";
 import {
+  Account,
+  accountMetadata,
   CalculateRollupFieldMetadata,
   CalculateRollupFieldRequest,
-} from "../dataverse-gen/functions/CalculateRollupField";
-import { Letter, LetterAttributes } from "../dataverse-gen/entities/Letter";
+  Letter,
+  LetterAttributes,
+  LogicalOperator,
+  metadataCache,
+  MetadataConditionOperator,
+  Opportunity,
+  opportunitycloseMetadata,
+  opportunityMetadata,
+  RetrieveMetadataChangesRequest,
+  RetrieveMetadataChangesResponse,
+  WinOpportunityMetadata,
+  WinOpportunityRequest,
+} from "../dataverse-gen";
 
 export class ContactForm {
-  static async getMetadata(cdsServiceClient: DataverseClient): Promise<void> {
+  static async getMetadata(cdsServiceClient: DataverseClient): Promise<RetrieveMetadataChangesResponse> {
     const metadataQuery = {
       logicalName: "RetrieveMetadataChanges",
       Query: {
@@ -57,8 +61,7 @@ export class ContactForm {
         },
       },
     } as RetrieveMetadataChangesRequest;
-    const entityResponse = (await cdsServiceClient.execute(metadataQuery)) as RetrieveMetadataChangesResponse;
-    console.log(entityResponse.EntityMetadata && entityResponse.EntityMetadata[0].LogicalName);
+    return (await cdsServiceClient.execute(metadataQuery)) as RetrieveMetadataChangesResponse;
   }
 
   static async calculateRollup(cdsServiceClient: DataverseClient): Promise<void> {
@@ -79,8 +82,7 @@ export class ContactForm {
         Target: Entity.toEntityReference(account1),
       } as CalculateRollupFieldRequest;
 
-      const response = await cdsServiceClient.execute(request);
-      console.log(response);
+      await cdsServiceClient.execute(request);
     } catch (ex) {
       console.error(ex);
     } finally {
@@ -91,7 +93,7 @@ export class ContactForm {
     }
   }
 
-  static async winOpportunity(cdsServiceClient: DataverseClient): Promise<void> {
+  static async winOpportunity(cdsServiceClient: DataverseClient): Promise<Opportunity> {
     // Create opportunity
     const opportunity1 = {
       logicalName: opportunityMetadata.logicalName,
@@ -119,17 +121,11 @@ export class ContactForm {
           opportunityid: Entity.toEntityReference(opportunity1),
         },
       } as WinOpportunityRequest;
-      const winResponse = await cdsServiceClient.execute(winRequest);
+      await cdsServiceClient.execute(winRequest);
 
-      const opportunityRetreived = (await cdsServiceClient.retrieve(opportunity1.logicalName, opportunity1.id, [
+      return (await cdsServiceClient.retrieve(opportunity1.logicalName, opportunity1.id, [
         "customerid",
       ])) as Opportunity;
-
-      console.log(opportunityRetreived.customerid?.id);
-
-      console.log(winResponse);
-    } catch (ex) {
-      console.error(ex);
     } finally {
       if (opportunity1.id) {
         // Tidy up
@@ -142,7 +138,7 @@ export class ContactForm {
     }
   }
 
-  static async createActivity(cdsServiceClient: DataverseClient): Promise<void> {
+  static async createActivity(cdsServiceClient: DataverseClient): Promise<Letter> {
     const account1 = {
       logicalName: "account",
       name: "Account 1",
@@ -168,15 +164,11 @@ export class ContactForm {
 
       // Retrieve again to check bcc
       if (letter1.id) {
-        const letterRetrieved = (await cdsServiceClient.retrieve("letter", letter1.id, [
+        return (await cdsServiceClient.retrieve("letter", letter1.id, [
           LetterAttributes.Subject,
           LetterAttributes.to,
         ])) as Letter;
-        console.log(letterRetrieved.bcc && letterRetrieved.bcc[0].partyid);
-        console.log(letterRetrieved.to && letterRetrieved.to[0].partyid);
-      }
-    } catch (ex) {
-      fail(ex);
+      } else throw "Letter not created";
     } finally {
       if (letter1.id) {
         // Tidy up
@@ -190,7 +182,6 @@ export class ContactForm {
   }
 
   static async onLoad(): Promise<void> {
-    console.log("ContactForm onload");
     setMetadataCache(metadataCache);
 
     const cdsServiceClient = new XrmContextDataverseClient(Xrm.WebApi);

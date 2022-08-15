@@ -6,9 +6,11 @@
   "main": "webpack.config.js",
   "dependencies": {
     "dataverse-ify": "^2.0.3",
-    "moment": "^2.29.1"
+    "dotenv": "^16.0.1",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
+    "@microsoft/eslint-plugin-power-apps": "^0.2.2",
     "@types/jest": "^26.0.23",
     "@types/xrm": "^9.0.39",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
@@ -17,6 +19,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-sonarjs": "^0.14.0",
     "jest": "^26.6.3",
     "prettier": "2.2.1",
     "ts-jest": "^26.5.6",
@@ -26,12 +29,13 @@
     "webpack-merge": "^5.7.3"
   },
   "scripts": {
-    "test": "jest \/unit.",
-    "integration-test": "jest \/integration.",
+    "test": "jest",
+    "unittest": "jest /unit.",
+    "integration-test": "jest /integration.",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch",
     "dist": "webpack --config webpack.prod.js",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint **/*.ts",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "",

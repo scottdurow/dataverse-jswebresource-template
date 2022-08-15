@@ -1,7 +1,40 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DataverseClient, IEntity, Guid } from "dataverse-ify";
+import { DataverseClient, IEntity, Guid, EntityCollection, EntityReference, WebApiExecuteRequest } from "dataverse-ify";
+import {
+  FetchRetrieveMultipleOptions,
+  ODataRetrieveMultipleOptions,
+} from "dataverse-ify/lib/dataverse-ify/DataverseClient/DataverseClient";
 
 export class MockDataverseClient implements DataverseClient {
+  retrieveMultiple<T extends IEntity>(
+    _query: string,
+    _options?: FetchRetrieveMultipleOptions | ODataRetrieveMultipleOptions | undefined,
+  ): Promise<EntityCollection<T>> {
+    throw new Error("Method not implemented.");
+  }
+  associate(
+    _entityName: string,
+    _entityId: string,
+    _relationship: string,
+    _relatedEntities: EntityReference[],
+  ): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+  disassociate(
+    _entityName: string,
+    _entityId: string,
+    _relationship: string,
+    _relatedEntities: EntityReference[],
+  ): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+  execute<T>(_request: WebApiExecuteRequest): Promise<T | undefined> {
+    throw new Error("Method not implemented.");
+  }
+  executeMultiple<T>(_requests: WebApiExecuteRequest[]): Promise<T[] | undefined> {
+    throw new Error("Method not implemented.");
+  }
   create(_entity: import("dataverse-ify").IEntity): Promise<string> {
     throw new Error("Method not implemented.");
   }
@@ -16,30 +49,6 @@ export class MockDataverseClient implements DataverseClient {
     _id: string,
     _columnSet: boolean | string[],
   ): Promise<T> {
-    throw new Error("Method not implemented.");
-  }
-  retrieveMultiple<T extends import("dataverse-ify").IEntity>(
-    _fetchxml: string,
-  ): Promise<import("dataverse-ify").EntityCollection<T>> {
-    throw new Error("Method not implemented.");
-  }
-  associate(
-    _entityName: string,
-    _entityId: string,
-    _relationship: string,
-    _relatedEntities: Promise<import("dataverse-ify").EntityReference[]>,
-  ): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-  disassociate(
-    _entityName: string,
-    _entityId: string,
-    _relationship: string,
-    _relatedEntities: import("dataverse-ify").EntityReference[],
-  ): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-  execute(_request: import("dataverse-ify").WebApiExecuteRequest): Promise<unknown> {
     throw new Error("Method not implemented.");
   }
 }
