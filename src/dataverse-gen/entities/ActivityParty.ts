@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity ActivityParty
 export const activitypartyMetadata = {
   typeName: "mscrm.activityparty",
@@ -51,6 +52,7 @@ export const enum ActivityPartyAttributes {
   ResourceSpecIdName = "resourcespecidname",
   ScheduledEnd = "scheduledend",
   ScheduledStart = "scheduledstart",
+  UnresolvedPartyName = "unresolvedpartyname",
   VersionNumber = "versionnumber",
 }
 
@@ -152,6 +154,10 @@ export interface ActivityParty extends IEntity {
   Scheduled Start DateTimeType Scheduled start time of the activity. DateOnly:UserLocal
   */
   scheduledstart?: Date | null;
+  /*
+  Unresolved Party Name StringType The name of the party to be used when the party is not resolved to an entity.
+  */
+  unresolvedpartyname?: string | null;
   /*
    BigIntType
   */

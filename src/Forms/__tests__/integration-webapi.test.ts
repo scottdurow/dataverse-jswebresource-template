@@ -2,6 +2,17 @@ import { setMetadataCache } from "dataverse-ify";
 import { SetupGlobalContextIfUndefined } from "dataverse-ify/lib/webapi/node";
 import { metadataCache } from "../../dataverse-gen";
 
+test("retrieveMultipleRecords", async () => {
+  await SetupGlobalContextIfUndefined();
+  const fetch = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="account">
+    <attribute name="name" />
+  </entity>
+</fetch>`;
+  const response = await Xrm.WebApi.retrieveMultipleRecords("account", "?fetchXml=" + encodeURIComponent(fetch));
+  console.log(response);
+});
+
 /*
 Demonstrates how to integration test form logic with a connection to dataverse
 provided by the dataverse-ify implementation of Xrm.WebApi

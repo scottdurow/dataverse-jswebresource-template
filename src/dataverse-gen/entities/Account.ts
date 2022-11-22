@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity Account
 export const accountMetadata = {
   typeName: "mscrm.account",

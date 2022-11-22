@@ -1,6 +1,5 @@
 import { ActivityParty, EntityReference, setMetadataCache, XrmContextDataverseClient } from "dataverse-ify";
-import { Letter, letterMetadata } from "../dataverse-gen";
-import { metadataCache } from "../dataverse-gen/metadata";
+import { Letter, letterMetadata, metadataCache } from "../dataverse-gen";
 
 export class ContactRibbon {
   static async SendEmail(context: Xrm.FormContext): Promise<void> {

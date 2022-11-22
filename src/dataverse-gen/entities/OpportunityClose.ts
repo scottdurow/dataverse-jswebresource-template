@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity OpportunityClose
 export const opportunitycloseMetadata = {
   typeName: "mscrm.opportunityclose",

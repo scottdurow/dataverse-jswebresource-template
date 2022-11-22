@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity Opportunity
 export const opportunityMetadata = {
   typeName: "mscrm.opportunity",
@@ -255,7 +256,7 @@ export const enum OpportunityAttributes {
 // Early Bound Interface
 export interface Opportunity extends IEntity {
   /*
-  Account LookupType Unique identifier of the account with which the opportunity is associated.
+  Account LookupType Internal attribute for storing customerid. Do not use this attribute directly; use parentaccountid instead.
   */
   accountid?: import("dataverse-ify").EntityReference | null;
   /*
@@ -319,7 +320,7 @@ export interface Opportunity extends IEntity {
   */
   confirminterest?: boolean | null;
   /*
-  Contact LookupType Unique identifier of the contact associated with the opportunity.
+  Contact LookupType Internal attribute for storing customerid. Do not use this attribute directly; use parentcontactid instead.
   */
   contactid?: import("dataverse-ify").EntityReference | null;
   /*

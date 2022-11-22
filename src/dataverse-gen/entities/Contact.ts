@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity Contact
 export const contactMetadata = {
   typeName: "mscrm.contact",

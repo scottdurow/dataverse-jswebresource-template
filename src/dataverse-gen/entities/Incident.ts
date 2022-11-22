@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import { IEntity } from "dataverse-ify";
+
 // Entity Incident
 export const incidentMetadata = {
   typeName: "mscrm.incident",
@@ -357,7 +358,7 @@ export interface Incident extends IEntity {
   */
   customersatisfactioncode?: import("../enums/incident_incident_customersatisfactioncode").incident_incident_customersatisfactioncode | null;
   /*
-  Deactivated On DateTimeType Shows the date time when the Case was cancelled. DateAndTime:UserLocal
+  Deactivated On DateTimeType Shows the date time when the Case was resolved. DateAndTime:UserLocal
   */
   deactivatedon?: Date | null;
   /*
