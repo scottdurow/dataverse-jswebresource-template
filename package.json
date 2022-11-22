@@ -1,11 +1,10 @@
 {
   "name": "webresourcetemplate",
-  
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "dataverse-ify": "^1.0.8",
+    "dataverse-ify": "^1.0.13",
     "moment": "^2.29.1"
   },
   "devDependencies": {
@@ -19,12 +18,12 @@
     "eslint-plugin-react": "^7.23.2",
     "jest": "^26.6.3",
     "prettier": "2.2.1",
+    "syswide-cas": "^5.3.0",
     "ts-jest": "^26.5.6",
     "ts-loader": "^9.1.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0",
-    "webpack-merge": "^5.7.3",
-    "syswide-cas": "^5.3.0"
+    "webpack-merge": "^5.7.3"
   },
   "scripts": {
     "test": "jest unit.",
